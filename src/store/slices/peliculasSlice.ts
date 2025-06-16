@@ -26,6 +26,15 @@ const peliculasSlice = createSlice({
     reducers:{
         addMovie: (state, action: PayloadAction<Pelicula>) => {
             state.peliculas.push(action.payload);
+        },
+        deleteMovie: (state, action: PayloadAction<Pelicula>) =>{
+            state.peliculas = state.peliculas.filter((movie) => movie.id !== action.payload.id)
+        },
+        editMovie: (state, action: PayloadAction<Pelicula>) => {
+            const movieToEdit = state.peliculas.findIndex(movie => movie.id === action.payload.id);
+            if(movieToEdit !== -1){
+                state.peliculas[movieToEdit] = action.payload;
+            }
         }
     }
 })
@@ -33,5 +42,5 @@ const peliculasSlice = createSlice({
 
 
 // EXPORTAMOS FUNCIONES Y REDUCER
-export const {addMovie} = peliculasSlice.actions;
+export const {addMovie, deleteMovie, editMovie} = peliculasSlice.actions;
 export default peliculasSlice.reducer;
