@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteMovie, editMovie } from "../store/slices/peliculasSlice";
 
 import Modal from "./ModalEdit";
+
 type Movie = {
     id: number;
     name: string;
@@ -38,6 +39,7 @@ const MoviesList = ({movie}: {movie: Movie}) => {
                 setEditName={setEditName}
                 setEditGender={setEditGender}
                 setModal={setModal}
+                // 👉🏼 Ejecuta la función desde el padre
                 onAccept={() => {
                     if (editId !== null && editName && editGender) {
                     dispatch(editMovie({ id: editId, name: editName, gender: editGender }));
