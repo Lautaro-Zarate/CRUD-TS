@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+// IMPORTS JSON SERVER 👇
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
 // 1 INTERFACE DE PELICULA
 interface Pelicula {
     id: number;
@@ -11,11 +14,15 @@ interface Pelicula {
 // 2 INTERFACE DEL ESTADO DE PELICULAS
 interface PeliculasState{
     peliculas: Pelicula[];
+    loading: boolean;
+    error: string | null;
 }
 
 // 3 ESTADO INCIAL
 const initialState: PeliculasState = {
     peliculas: [],
+    loading: false,
+    error: null,
 }
 
 
@@ -36,9 +43,95 @@ const peliculasSlice = createSlice({
                 state.peliculas[movieToEdit] = action.payload;
             }
         }
+    },
+    extraReducers: (builder) => {
+        // TRAER PELICULAS
+        builder
+        .addCase(fetchPeliculas.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(fetchPeliculas.fulfilled, (state, action) => {
+            state.loading = false;
+            state.peliculas = action.payload;
+        })
+        .addCase(fetchPeliculas.rejected, (state) => {
+            state.loading = false;
+            state.error = "No se pudieron cargar las películas"
+        });
+
+        // AGREGAR
+        builder.addCase(addPelicula.fulfilled, (state, action) => {
+            state.peliculas.push(action.payload);
+        });
+
+        // BORRAR
+        builder.addCase(deletePelicula.fulfilled, (state, action) => {
+            state.peliculas = state.peliculas.filter((p) => p.id !== action.payload)
+        })
+
+        // EDITAR
+        builder.addCase(updatePelicula.fulfilled, (state, action) => {
+            const index = state.peliculas.findIndex((p) => p.id === action.payload.id);
+            if(index !== -1){
+                state.peliculas[index] = action.payload;
+            }
+        })
     }
 })
 
+
+
+// THUNKS 👇
+
+// GET METHOD
+export const fetchPeliculas = createAsyncThunk(
+    "peliculas/fetchPeliculas",
+    async () => {
+        const response = await fetch("http://localhost:3001/peliculas");
+        const data = await response.json();
+        return data;
+    }
+)
+
+// CREATE METHOD
+export const addPelicula = createAsyncThunk(
+    "peliculas/addPelicula",
+    async (pelicula: Pelicula) => {
+    const response = await fetch("http://localhost:3001/peliculas", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(pelicula),
+    });
+    const data = await response.json();
+    return data;
+}
+);
+
+// DELETE METHOD
+export const deletePelicula = createAsyncThunk(
+    "peliculas/deletePelicula",
+    async (id: number) => {
+        await fetch(`http://localhost:3001/peliculas/${id}`,{
+            method: "DELETE"
+        });
+        return id;
+    }
+);
+
+// PUT METHOD
+export const updatePelicula = createAsyncThunk(
+    "peliculas/updatePelicula",
+    async (pelicula: Pelicula) => {
+        const response = await fetch(`http://localhost:3001/peliculas/${pelicula.id}`, {
+            method: "PUT",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(pelicula),
+        });
+        const data = await response.json();
+        return data;
+    }
+);
 
 
 // EXPORTAMOS FUNCIONES Y REDUCER
