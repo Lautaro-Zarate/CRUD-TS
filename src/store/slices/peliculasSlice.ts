@@ -61,23 +61,51 @@ const peliculasSlice = createSlice({
         });
 
         // AGREGAR
-        builder.addCase(addPelicula.fulfilled, (state, action) => {
-            state.peliculas.push(action.payload);
-        });
+        builder
+        .addCase(addPelicula.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        })
+        .addCase(addPelicula.fulfilled, (state, action) => {
+        state.loading = false;
+        state.peliculas.push(action.payload);
+        })
+        .addCase(addPelicula.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Error al agregar película";
+        })
 
         // BORRAR
-        builder.addCase(deletePelicula.fulfilled, (state, action) => {
-            state.peliculas = state.peliculas.filter((p) => p.id !== action.payload)
+        .addCase(deletePelicula.pending, (state) => {
+        state.loading = true;
+        state.error = null;
         })
+        .addCase(deletePelicula.fulfilled, (state, action) => {
+        state.loading = false;
+        state.peliculas = state.peliculas.filter(p => p.id !== action.payload);
+        })
+        .addCase(deletePelicula.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Error al eliminar película";
+    })
 
         // EDITAR
-        builder.addCase(updatePelicula.fulfilled, (state, action) => {
-            const index = state.peliculas.findIndex((p) => p.id === action.payload.id);
-            if(index !== -1){
-                state.peliculas[index] = action.payload;
-            }
+        .addCase(updatePelicula.pending, (state) => {
+        state.loading = true;
+        state.error = null;
         })
-    }
+        .addCase(updatePelicula.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.peliculas.findIndex(p => p.id === action.payload.id);
+        if (index !== -1) {
+            state.peliculas[index] = action.payload;
+        }
+        })
+        .addCase(updatePelicula.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Error al editar película";
+        });
+        }
 })
 
 
@@ -88,7 +116,7 @@ const peliculasSlice = createSlice({
 export const fetchPeliculas = createAsyncThunk(
     "peliculas/fetchPeliculas",
     async () => {
-        const response = await fetch("http://localhost:3001/peliculas");
+        const response = await fetch("http://localhost:3000/peliculas");
         const data = await response.json();
         return data;
     }
@@ -98,7 +126,7 @@ export const fetchPeliculas = createAsyncThunk(
 export const addPelicula = createAsyncThunk(
     "peliculas/addPelicula",
     async (pelicula: Pelicula) => {
-    const response = await fetch("http://localhost:3001/peliculas", {
+    const response = await fetch("http://localhost:3000/peliculas", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(pelicula),
@@ -112,7 +140,7 @@ export const addPelicula = createAsyncThunk(
 export const deletePelicula = createAsyncThunk(
     "peliculas/deletePelicula",
     async (id: number) => {
-        await fetch(`http://localhost:3001/peliculas/${id}`,{
+        await fetch(`http://localhost:3000/peliculas/${id}`,{
             method: "DELETE"
         });
         return id;
@@ -123,7 +151,7 @@ export const deletePelicula = createAsyncThunk(
 export const updatePelicula = createAsyncThunk(
     "peliculas/updatePelicula",
     async (pelicula: Pelicula) => {
-        const response = await fetch(`http://localhost:3001/peliculas/${pelicula.id}`, {
+        const response = await fetch(`http://localhost:3000/peliculas/${pelicula.id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(pelicula),

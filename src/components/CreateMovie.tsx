@@ -1,13 +1,19 @@
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { useState } from "react";
-import { addMovie } from "../store/slices/peliculasSlice";
+import { useState, useEffect } from "react";
+// import { addMovie } from "../store/slices/peliculasSlice";
+import { addPelicula, fetchPeliculas } from "../store/slices/peliculasSlice";
+import type { AppDispatch } from "../store/store";
 
 const CreateMovie = () => {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
+
+        useEffect(() => {
+        dispatch(fetchPeliculas())
+    }, [])
 
     return(
         <div>
@@ -15,7 +21,7 @@ const CreateMovie = () => {
             <div>
                 <input type="text" placeholder="Marvel, Star Wars..." value={name} onChange={(e) => setName(e.target.value)}/>
                 <input type="text" placeholder="Género/categoría" value={gender} onChange={(e) => setGender(e.target.value)}/>
-                <button onClick={() => dispatch(addMovie({
+                <button onClick={() => dispatch(addPelicula({
                     id: Date.now(),
                     name: name,
                     gender: gender,

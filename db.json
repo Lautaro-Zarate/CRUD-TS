@@ -1,3 +1,9 @@
 {
-    "peliculas": []
+  "peliculas": [
+    {
+      "id": 1750377108266,
+      "name": "Marvel",
+      "gender": "Accion"
+    }
+  ]
 }

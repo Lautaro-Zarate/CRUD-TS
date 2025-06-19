@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState} from "react";
 
 import { useDispatch } from "react-redux";
-import { deleteMovie, editMovie } from "../store/slices/peliculasSlice";
+import type { AppDispatch } from "../store/store";
+import {  deletePelicula, updatePelicula } from "../store/slices/peliculasSlice";
 
 import Modal from "./ModalEdit";
 
@@ -17,13 +18,14 @@ const MoviesList = ({movie}: {movie: Movie}) => {
     const [editGender, setEditGender] = useState<string | null>(null);
     const [modal, setModal] =useState<boolean>(false);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
+
     return(
         <div>
             <h2>{movie.name}</h2>
             <p>{movie.gender}</p>
             <div>
-                <button onClick={() => dispatch(deleteMovie(movie))}>Eliminar</button>
+                <button onClick={() => dispatch(deletePelicula(movie.id))}>Eliminar</button>
                 <button onClick={() => {
                     setEditId(movie.id);
                     setEditName(movie.name);
@@ -42,7 +44,7 @@ const MoviesList = ({movie}: {movie: Movie}) => {
                 // 👉🏼 Ejecuta la función desde el padre
                 onAccept={() => {
                     if (editId !== null && editName && editGender) {
-                    dispatch(editMovie({ id: editId, name: editName, gender: editGender }));
+                    dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
                     }
                 }}
                 />
