@@ -11,6 +11,7 @@ interface ModalProps {
 }
 
 const Modal = ({
+    editId,
     editName,
     editGender,
     setEditName,
@@ -18,6 +19,7 @@ const Modal = ({
     setModal,
     onAccept,
 }: ModalProps) => {
+
 return (
     <div className="modal-container">
     <div className="modal-content">
