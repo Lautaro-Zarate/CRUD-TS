@@ -116,7 +116,7 @@ const peliculasSlice = createSlice({
 export const fetchPeliculas = createAsyncThunk(
     "peliculas/fetchPeliculas",
     async () => {
-        const response = await fetch("http://localhost:3000/peliculas");
+        const response = await fetch("http://localhost:3001/peliculas");
         const data = await response.json();
         return data;
     }
@@ -125,14 +125,15 @@ export const fetchPeliculas = createAsyncThunk(
 // CREATE METHOD
 export const addPelicula = createAsyncThunk(
     "peliculas/addPelicula",
-    async (pelicula: Pelicula) => {
-    const response = await fetch("http://localhost:3000/peliculas", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(pelicula),
-    });
-    const data = await response.json();
-    return data;
+    async ({ name, gender }: { name: string; gender: string }) => {
+        const response = await fetch("http://localhost:3001/peliculas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, gender }), // 👈 no incluir "id"
+        });
+
+        const data = await response.json();
+        return data; // contiene el id generado por json-server
 }
 );
 
@@ -140,7 +141,7 @@ export const addPelicula = createAsyncThunk(
 export const deletePelicula = createAsyncThunk(
     "peliculas/deletePelicula",
     async (id: number) => {
-        await fetch(`http://localhost:3000/peliculas/${id}`,{
+        await fetch(`http://localhost:3001/peliculas/${id}`,{
             method: "DELETE"
         });
         return id;
@@ -151,7 +152,8 @@ export const deletePelicula = createAsyncThunk(
 export const updatePelicula = createAsyncThunk(
     "peliculas/updatePelicula",
     async (pelicula: Pelicula) => {
-        const response = await fetch(`http://localhost:3000/peliculas/${pelicula.id}`, {
+        console.log("EDITANDO:", pelicula); // 👈
+        const response = await fetch(`http://localhost:3001/peliculas/${pelicula.id}`, {
             method: "PUT",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(pelicula),

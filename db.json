@@ -1,14 +1,3 @@
 {
-  "peliculas": [
-    {
-      "id": 1750517729771,
-      "name": "Star Wars",
-      "gender": "Accion"
-    },
-    {
-      "id": 1750517750003,
-      "name": "Marvel",
-      "gender": "Comedia"
-    }
-  ]
+  "peliculas": []
 }

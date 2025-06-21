@@ -22,7 +22,6 @@ const CreateMovie = () => {
                 <input type="text" placeholder="Marvel, Star Wars..." value={name} onChange={(e) => setName(e.target.value)}/>
                 <input type="text" placeholder="Género/categoría" value={gender} onChange={(e) => setGender(e.target.value)}/>
                 <button onClick={() => dispatch(addPelicula({
-                    id: Date.now(),
                     name: name,
                     gender: gender,
                 }))}>Agregar</button>
