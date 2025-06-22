@@ -16,17 +16,19 @@ const CreateMovie = () => {
     }, [])
 
     return(
-        <div>
-            <h1>Crear Película/Serie</h1>
-            <div>
-                <input type="text" placeholder="Marvel, Star Wars..." value={name} onChange={(e) => setName(e.target.value)}/>
-                <input type="text" placeholder="Género/categoría" value={gender} onChange={(e) => setGender(e.target.value)}/>
-                <button onClick={() => dispatch(addPelicula({
-                    name: name,
-                    gender: gender,
-                }))}>Agregar</button>
+        <section className="create-movie-container">
+            <div className="create-movie-absolute">
+                <h1>Crear Película</h1>
+                <div className="create-movie-inputs">
+                    <input type="text" placeholder="Marvel, Star Wars..." value={name} onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" placeholder="Género/categoría" value={gender} onChange={(e) => setGender(e.target.value)}/>
+                    <button onClick={() => dispatch(addPelicula({
+                        name: name,
+                        gender: gender,
+                    }))}>Agregar</button>
+                </div>
             </div>
-        </div>
+        </section>
     )
 }
 
