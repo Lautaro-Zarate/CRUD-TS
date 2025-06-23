@@ -1,3 +1,44 @@
 {
-  "peliculas": []
+  "peliculas": [
+    {
+      "id": "9cd6",
+      "name": "Star Wars",
+      "gender": "Acción"
+    },
+    {
+      "id": "5815",
+      "name": "Marvel",
+      "gender": "Accion"
+    },
+    {
+      "id": "aae1",
+      "name": "dasdsadsaa",
+      "gender": "sdsadsad"
+    },
+    {
+      "id": "3d9e",
+      "name": "asdasdaas",
+      "gender": "dsadad"
+    },
+    {
+      "id": "392d",
+      "name": "sssssssssssss",
+      "gender": "ssssssssssss"
+    },
+    {
+      "id": "500c",
+      "name": "sssssssssssssssa",
+      "gender": "aaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "5ed7",
+      "name": "aaaaaaaaaaad",
+      "gender": "ddddddddddddddddd"
+    },
+    {
+      "id": "43a5",
+      "name": "ssssssssssssd",
+      "gender": "ddddddddddddddddddd"
+    }
+  ]
 }

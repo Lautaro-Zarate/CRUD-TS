@@ -5,11 +5,13 @@ import MoviesList from "./MoviesList";
 const MoviesContainer = () => {
     const movies = useSelector((state: RootState) => state.peliculas.peliculas);
 return (
-        <div>
+        <section className="movies-container">
             {movies.map((movie) => (
-            <MoviesList key={movie.id} movie={movie} />
+                <article key={movie.id} className="movie-list-container">
+                    <MoviesList movie={movie}/>
+                </article>
             ))}
-        </div>
+        </section>
 )}
 
 export default MoviesContainer;

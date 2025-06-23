@@ -21,35 +21,37 @@ const MoviesList = ({movie}: {movie: Movie}) => {
     const dispatch = useDispatch<AppDispatch>();
 
     return(
-        <div>
-            <h2>{movie.name}</h2>
-            <p>{movie.gender}</p>
-            <div>
-                <button onClick={() => dispatch(deletePelicula(movie.id))}>Eliminar</button>
-                <button onClick={() => {
-                    setEditId(movie.id);
-                    setEditName(movie.name);
-                    setEditGender(movie.gender);
-                    setModal(true);
-                }}>Editar</button>
+            <div className="movie-list">
+                <div className="list-info">
+                    <h2>{movie.name}</h2>
+                    <p>{movie.gender}</p>
+                </div>
+                <div className="list-btn">
+                    <button onClick={() => {
+                        setEditId(movie.id);
+                        setEditName(movie.name);
+                        setEditGender(movie.gender);
+                        setModal(true);
+                    }}>Editar</button>
+                    <button onClick={() => dispatch(deletePelicula(movie.id))}>Eliminar</button>
+                </div>
+                {modal && (
+                    <Modal
+                    editId={editId}
+                    editName={editName}
+                    editGender={editGender}
+                    setEditName={setEditName}
+                    setEditGender={setEditGender}
+                    setModal={setModal}
+                    // 👉🏼 Ejecuta la función desde el padre
+                    onAccept={() => {
+                        if (editId !== null && editName && editGender) {
+                        dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
+                        }
+                    }}
+                    />
+                )}
             </div>
-            {modal && (
-                <Modal
-                editId={editId}
-                editName={editName}
-                editGender={editGender}
-                setEditName={setEditName}
-                setEditGender={setEditGender}
-                setModal={setModal}
-                // 👉🏼 Ejecuta la función desde el padre
-                onAccept={() => {
-                    if (editId !== null && editName && editGender) {
-                    dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
-                    }
-                }}
-                />
-            )}
-        </div>
     )
 }
 

@@ -32,7 +32,6 @@ nav{
   position: absolute;
   top:-98%;
   padding: 20px;
-  /* background-color: aliceblue; */
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -56,13 +55,49 @@ nav{
   font-size: 1.2rem;
 }
 .create-movie-inputs button{
-  /* background-color: #b81d24; */
   background: linear-gradient(90deg,#b81d24, #1f1f1f);
   color: antiquewhite;
   padding: 9px;
   border: none;
   border-radius: 8px;
   font-size: 1.2rem;
+}
+/* MOVIE LIST */
+.movies-container{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: 0 20px;
+    margin-top: -50px;
+}
+.movie-list-container {
+    display: flex;
+    padding: 15px;
+    height: auto;
+    margin: 10px 0;
+    background-color: #808080;
+}
+.movie-list{
+  display: flex;
+  margin: 0 10px;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.list-info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.list-btn{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 /* MODAL */
 .modal-container{
