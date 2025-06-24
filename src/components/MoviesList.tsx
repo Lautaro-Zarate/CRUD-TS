@@ -36,20 +36,22 @@ const MoviesList = ({movie}: {movie: Movie}) => {
                     <button onClick={() => dispatch(deletePelicula(movie.id))}>Eliminar</button>
                 </div>
                 {modal && (
-                    <Modal
-                    editId={editId}
-                    editName={editName}
-                    editGender={editGender}
-                    setEditName={setEditName}
-                    setEditGender={setEditGender}
-                    setModal={setModal}
-                    // 👉🏼 Ejecuta la función desde el padre
-                    onAccept={() => {
-                        if (editId !== null && editName && editGender) {
-                        dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
-                        }
-                    }}
-                    />
+                    <div className="modal">
+                        <Modal
+                        editId={editId}
+                        editName={editName}
+                        editGender={editGender}
+                        setEditName={setEditName}
+                        setEditGender={setEditGender}
+                        setModal={setModal}
+                        // 👉🏼 Ejecuta la función desde el padre
+                        onAccept={() => {
+                            if (editId !== null && editName && editGender) {
+                            dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
+                            }
+                        }}
+                        />
+                    </div>
                 )}
             </div>
     )

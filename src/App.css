@@ -23,6 +23,9 @@ nav{
   bottom: 65%;
   z-index: 2;
 }
+button{
+  cursor: pointer;
+}
 /* CREATE MOVIE */
 .create-movie-container{
   position: relative;
@@ -61,6 +64,12 @@ nav{
   border: none;
   border-radius: 8px;
   font-size: 1.2rem;
+  z-index: 2;
+}
+.error-message-input{
+  color: whitesmoke;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 /* MOVIE LIST */
 .movies-container{
@@ -68,14 +77,16 @@ nav{
     flex-direction: column;
     height: auto;
     margin: 0 20px;
-    margin-top: -50px;
+    margin-top: -10%;
+    margin-bottom: 50px;
 }
 .movie-list-container {
     display: flex;
     padding: 15px;
     height: auto;
     margin: 10px 0;
-    background-color: #808080;
+    background-color: #565656;
+    border-radius: 10px;
 }
 .movie-list{
   display: flex;
@@ -85,41 +96,61 @@ nav{
   gap: 15px;
   align-content: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
 }
 .list-info{
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   gap: 15px;
+}
+.list-info h2{
+  font-size: 1.5rem;
+}
+.list-info p{
+  font-size: 1.2rem;
 }
 .list-btn{
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
+.list-btn button{
+    background: linear-gradient(90deg, #b81d24, #1f1f1f);
+    color: antiquewhite;
+    padding: 9px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
 /* MODAL */
+.modal {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    margin: 10px 50px;
+}
 .modal-container{
-  position: relative;;
-  height: 100vh;
+  /* position: absolute; */
+  height: 0vh;
 }
 .modal-content{
-  position: absolute;
-  padding: 50px;
-  width: 80%;
-  top: -15%;
-  left: 10%;
-  background-color: #f33716d7;
+  padding: 20px 50px;
+  width: 100%;
+  background-color: #000000e6;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   border-radius: 20px;
+  text-align: center;
 }
 .modal-content h2{
   font-size: 2.4rem;
-  color: #141414;
+  color: whitesmoke;
 }
 .modal-input{
   width: 100%;
@@ -151,4 +182,56 @@ nav{
   border: 2px solid whitesmoke;
   background-color:#141414;
   color: whitesmoke;
+}
+button:hover{
+  scale: 1.05;
+}
+@media (min-width: 640px) {
+.brand {
+    bottom: 0%;
+    z-index: -1;
+}
+.create-movie-container {
+    height: 20vh;
+}
+.movies-container {
+    margin-top: 25%;
+}
+.modal {
+    margin: 10px 150px;
+}
+}
+@media (min-width: 768px) {
+.brand {
+    bottom: 30%;
+    z-index: -1;
+}
+.create-movie-container {
+    height: 10vh;
+}
+.movies-container {
+    margin-top: 20%;
+}
+}
+@media (min-width: 1024px) {
+  body{
+    margin: 0 10%;
+  }
+.brand {
+    bottom: 50%;
+    right: 28%;
+    z-index: -1;
+    height: 600px;
+    width: 600px;
+    object-fit: cover;
+}
+.create-movie-container {
+    height: 10vh;
+}
+.movies-container {
+    margin-top: 15%;
+}
+.modal{
+  margin: 0 400px;
+}
 }

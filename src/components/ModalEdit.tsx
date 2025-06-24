@@ -11,7 +11,6 @@ interface ModalProps {
 }
 
 const Modal = ({
-    // editId,
     editName,
     editGender,
     setEditName,
