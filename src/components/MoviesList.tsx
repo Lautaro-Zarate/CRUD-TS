@@ -1,11 +1,11 @@
 import { useState} from "react";
-
 import { useDispatch } from "react-redux";
+
 import type { AppDispatch } from "../store/store";
 import {  deletePelicula, updatePelicula } from "../store/slices/peliculasSlice";
 
 import Modal from "./ModalEdit";
-
+import {motion, AnimatePresence} from "framer-motion";
 type Movie = {
     id: number;
     name: string;
@@ -35,24 +35,30 @@ const MoviesList = ({movie}: {movie: Movie}) => {
                     }}>Editar</button>
                     <button onClick={() => dispatch(deletePelicula(movie.id))}>Eliminar</button>
                 </div>
+                <AnimatePresence>
                 {modal && (
-                    <div className="modal">
-                        <Modal
-                        editId={editId}
-                        editName={editName}
-                        editGender={editGender}
-                        setEditName={setEditName}
-                        setEditGender={setEditGender}
-                        setModal={setModal}
-                        // 👉🏼 Ejecuta la función desde el padre
-                        onAccept={() => {
-                            if (editId !== null && editName && editGender) {
-                            dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
-                            }
-                        }}
-                        />
-                    </div>
+                            <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="modal">
+                                <Modal
+                                editId={editId}
+                                editName={editName}
+                                editGender={editGender}
+                                setEditName={setEditName}
+                                setEditGender={setEditGender}
+                                setModal={setModal}
+                                // 👉🏼 Ejecuta la función desde el padre
+                                onAccept={() => {
+                                    if (editId !== null && editName && editGender) {
+                                    dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
+                                    }
+                                }}
+                                />
+                            </motion.div>
                 )}
+                </AnimatePresence>
             </div>
     )
 }

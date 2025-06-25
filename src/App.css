@@ -1,10 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body{
-  background-color: #141414;
+  background-image: url(./assets/bg-body.jpg);
+  font-family:"Lato", sans-serif;
+}
+h1,h2,h3,h4{
+  font-family:"Anton", sans-serif;
 }
 nav{
   width: 100%;
@@ -25,6 +32,13 @@ nav{
 }
 button{
   cursor: pointer;
+  font-family: "Lato", sans-serif;
+  transition: all 0.3s ease-in;
+}
+button:hover{
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 0 15px #646cff50;
+  animation: all 0.3s ease-in;
 }
 /* CREATE MOVIE */
 .create-movie-container{
@@ -43,6 +57,7 @@ button{
 .create-movie-absolute h1{
   font-size: 2.5rem;
   color:#141414;
+  font-weight: 300;
 }
 .create-movie-inputs{
   display: flex;
@@ -56,6 +71,7 @@ button{
   border: 1px solid #141414;
   outline: none;
   font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
 }
 .create-movie-inputs button{
   background: linear-gradient(90deg,#b81d24, #1f1f1f);
@@ -73,20 +89,29 @@ button{
 }
 /* MOVIE LIST */
 .movies-container{
+    position: relative;
     display: flex;
     flex-direction: column;
     height: auto;
     margin: 0 20px;
     margin-top: -10%;
     margin-bottom: 50px;
+    z-index: 1;
 }
 .movie-list-container {
     display: flex;
     padding: 15px;
     height: auto;
     margin: 10px 0;
-    background-color: #565656;
+    background-image: url(./assets/bg-cards.jpg);
+    background-position: center;
     border-radius: 10px;
+    transition: all 0.3s ease-in;
+}
+.movie-list-container:hover{
+  box-shadow: 0 0 15px #666;
+  transform: scale(1.02);
+  animation: all 0.5s ease-in;
 }
 .movie-list{
   display: flex;
@@ -107,6 +132,7 @@ button{
 }
 .list-info h2{
   font-size: 1.5rem;
+  font-weight: 300;
 }
 .list-info p{
   font-size: 1.2rem;
@@ -127,14 +153,13 @@ button{
 /* MODAL */
 .modal {
     position: absolute;
-    top: 50%;
+    top: 0;
     right: 0;
     left: 0;
     z-index: 10;
     margin: 10px 50px;
 }
 .modal-container{
-  /* position: absolute; */
   height: 0vh;
 }
 .modal-content{
@@ -161,6 +186,7 @@ button{
   background-color: transparent;
   color: whitesmoke;
   font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
 }
 .modal-input::placeholder{
   color: rgba(245, 245, 245, 0.745);
@@ -183,8 +209,12 @@ button{
   background-color:#141414;
   color: whitesmoke;
 }
-button:hover{
-  scale: 1.05;
+input:hover{
+  border-color: #666;
+}
+input:focus {
+  border-color: #b81d24;
+  box-shadow: 0 0 3px rgba(255, 0, 0, 0.5);
 }
 @media (min-width: 640px) {
 .brand {
@@ -199,6 +229,7 @@ button:hover{
 }
 .modal {
     margin: 10px 150px;
+    top: 0;
 }
 }
 @media (min-width: 768px) {
@@ -232,6 +263,13 @@ button:hover{
     margin-top: 15%;
 }
 .modal{
-  margin: 0 400px;
+    margin: 0px 400px;
+    width: 50%;
+    top: 0;
+    left: -25%;}
 }
+@media (min-width: 1200px){
+  .modal{
+    left: -15%;
+  }
 }
