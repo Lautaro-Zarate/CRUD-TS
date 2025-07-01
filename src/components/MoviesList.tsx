@@ -7,13 +7,13 @@ import {  deletePelicula, updatePelicula } from "../store/slices/peliculasSlice"
 import Modal from "./ModalEdit";
 import {motion, AnimatePresence} from "framer-motion";
 type Movie = {
-    id: number;
+    id: string;
     name: string;
     gender: string;
 }
 
 const MoviesList = ({movie}: {movie: Movie}) => {
-    const [editId, setEditId] = useState<number | null>(null);
+    const [editId, setEditId] = useState<string | null>(null);
     const [editName, setEditName] = useState<string | null>(null);
     const [editGender, setEditGender] = useState<string | null>(null);
     const [modal, setModal] =useState<boolean>(false);
@@ -53,6 +53,9 @@ const MoviesList = ({movie}: {movie: Movie}) => {
                                 onAccept={() => {
                                     if (editId !== null && editName && editGender) {
                                     dispatch(updatePelicula({ id: editId, name: editName, gender: editGender }));
+                                    setEditId(null);
+                                    setEditName(null);
+                                    setEditGender(null);
                                     }
                                 }}
                                 />

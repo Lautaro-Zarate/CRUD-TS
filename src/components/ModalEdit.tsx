@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 interface ModalProps {
-    editId: number | null;
+    editId: string | null;
     editName: string | null;
     editGender: string | null;
     setEditName: Dispatch<SetStateAction<string | null>>;
