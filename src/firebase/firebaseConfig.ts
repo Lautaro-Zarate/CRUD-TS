@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDwqLf6RBwjTZKz1pCcwlKpdUVrdHr0Iic",
-    authDomain: "crudflix.firebaseapp.com",
-    projectId: "crudflix",
-    storageBucket: "crudflix.firebasestorage.app",
-    messagingSenderId: "734527354495",
-    appId: "1:734527354495:web:f16a9635bb768cd29d314a"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
 }
 
 const app = initializeApp(firebaseConfig);
