@@ -40,14 +40,8 @@ button:hover{
   box-shadow: 0 0 15px #646cff50;
   animation: all 0.3s ease-in;
 }
-/* CREATE MOVIE */
-.create-movie-container{
-  position: relative;
-  height: 20vh;
-}
 .create-movie-absolute{
-  position: absolute;
-  top:-98%;
+  margin: -200px 0;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -89,12 +83,10 @@ button:hover{
 }
 /* MOVIE LIST */
 .movies-container{
-    position: relative;
     display: flex;
     flex-direction: column;
     height: auto;
-    margin: 0 20px;
-    margin-top: -10%;
+    margin: 200px 20px;
     margin-bottom: 50px;
     z-index: 1;
 }
@@ -151,30 +143,48 @@ button:hover{
     font-size: 1.1rem;
 }
 /* MODAL */
-.modal {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 10;
-    margin: 10px 50px;
-}
-.modal-container{
-  height: 0vh;
-}
-.modal-content{
-  padding: 20px 50px;
-  width: 100%;
-  background-color: #000000e6;
+.modal-dialog{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 20px;
+  background-color: #000000b0;
   gap: 20px;
-  border-radius: 20px;
+  width: auto;
+  border-radius: 10px;
+  border: 1px solid #666;
   text-align: center;
+  z-index: 10;
+  margin: -100px 50px 0 50px;
 }
-.modal-content h2{
-  font-size: 2.4rem;
+.modal-dialog h2{
+  font-weight: 300;
+  color: whitesmoke;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal{
+  margin-bottom: 100px;
+}
+.modal-btns{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 10px;
+  justify-content: space-evenly;
+}
+.btn-cancel{
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+}
+.btn-accept{
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 2px solid whitesmoke;
+  background-color:#141414;
   color: whitesmoke;
 }
 .modal-input{
@@ -191,24 +201,6 @@ button:hover{
 .modal-input::placeholder{
   color: rgba(245, 245, 245, 0.745);
 }
-.modal-btns{
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-top: 10px;
-}
-.btn-cancel{
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: none;
-}
-.btn-accept{
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 2px solid whitesmoke;
-  background-color:#141414;
-  color: whitesmoke;
-}
 input:hover{
   border-color: #666;
 }
@@ -223,10 +215,11 @@ input:focus {
   background-color: #666;
   border-radius: 8px;
   padding:10px;
+  margin-top: 50px;
 }
 @media (min-width: 640px) {
 .brand {
-    bottom: 0%;
+    bottom: 45%;
     z-index: -1;
 }
 .create-movie-container {
@@ -235,18 +228,14 @@ input:focus {
 .movies-container {
     margin-top: 25%;
 }
-.modal {
-    margin: 10px 150px;
-    top: 0;
-}
 }
 @media (min-width: 768px) {
 .brand {
-    bottom: 30%;
+    bottom: 40%;
     z-index: -1;
 }
 .create-movie-container {
-    height: 10vh;
+    height: 20vh;
 }
 .movies-container {
     margin-top: 20%;
@@ -258,26 +247,29 @@ input:focus {
   }
 .brand {
     bottom: 50%;
-    right: 28%;
+    right: 20%;
     z-index: -1;
     height: 600px;
     width: 600px;
     object-fit: cover;
 }
 .create-movie-container {
-    height: 10vh;
+    height: 30vh;
 }
 .movies-container {
     margin-top: 15%;
 }
-.modal{
-    margin: 0px 400px;
-    width: 50%;
-    top: 0;
-    left: -25%;}
+.modal-dialog{
+  width: auto;
+  margin: -200px 400px 0 400px;
+}
 }
 @media (min-width: 1200px){
-  .modal{
-    left: -15%;
+  .brand{
+    right: 25%;
   }
+  .modal-dialog{
+  width: auto;
+  margin: -200px 400px 0 400px;
+}
 }

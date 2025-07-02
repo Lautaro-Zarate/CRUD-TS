@@ -41,7 +41,7 @@ const MoviesList = ({movie}: {movie: Movie}) => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="modal">
+                            >
                                 <Modal
                                 editId={editId}
                                 editName={editName}
