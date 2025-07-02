@@ -14,7 +14,7 @@ return (
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="no-movies-text"
+            className="no-movies"
             >
             No hay películas cargadas
             </motion.p>
